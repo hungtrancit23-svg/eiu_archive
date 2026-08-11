@@ -1,9 +1,3 @@
 import cors from 'cors';
 
-app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://eiu-archive.vercel.app'
-  ],
-  credentials: true
-}));
+app.use(cors()); // Cho phép tất cả các nguồn gửi request
