@@ -30,10 +30,12 @@ enum Language {
 }
 
 model User {
-  id       String @id @default(uuid())
-  username String @unique
-  email    String @unique
-  password String
+  id       String  @id @default(uuid())
+  username String  @unique
+  email    String  @unique
+  password String? // Cho phép null để đăng nhập bằng Google không cần mật khẩu
+
+  googleId String? @unique // Lưu Google ID duy nhất của người dùng
 
   role Role @default(STUDENT)
 

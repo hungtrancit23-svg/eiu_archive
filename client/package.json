@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^6.3.2",
+    "@react-oauth/google": "^0.13.5",
     "antd": "^6.5.3",
     "axios": "^1.19.0",
     "react": "^19.2.8",

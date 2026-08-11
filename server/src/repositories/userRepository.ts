@@ -71,4 +71,40 @@ export const userRepository = {
     });
     return users;
   },
+
+  // === BỔ SUNG 2 HÀM PHỤC VỤ GOOGLE LOGIN BÊN DƯỚI ===
+
+  createGoogleUser: async (data: {
+    username: string;
+    email: string;
+    googleId: string;
+    avatarUrl?: string;
+    firstName?: string;
+  }) => {
+    return await prisma.user.create({
+      data: {
+        username: data.username,
+        email: data.email,
+        googleId: data.googleId,
+        isActive: true,
+        emailVerifiedAt: new Date(),
+        profile: {
+          create: {
+            avatarUrl: data.avatarUrl,
+            firstName: data.firstName,
+          },
+        },
+        setting: {
+          create: {},
+        },
+      },
+    });
+  },
+
+  updateGoogleId: async (userId: string, googleId: string) => {
+    return await prisma.user.update({
+      where: { id: userId },
+      data: { googleId },
+    });
+  },
 };

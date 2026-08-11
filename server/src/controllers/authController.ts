@@ -40,6 +40,27 @@ export async function login(
   }
 }
 
+// THÊM MỚI: Controller xử lý Đăng nhập Google
+export async function googleLogin(
+  req: Request<{}, {}, { idToken: string }>,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const { idToken } = req.body;
+    const result = await authService.googleLogin(idToken);
+
+    res.status(HTTP_STATUS.OK).json({
+      success: true,
+      message: "Google login successful.",
+      token: result.token,
+      user: result.user,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export async function logout(req: Request, res: Response, next: NextFunction) {
   try {
     // Xử lý đăng xuất (nếu cần)
